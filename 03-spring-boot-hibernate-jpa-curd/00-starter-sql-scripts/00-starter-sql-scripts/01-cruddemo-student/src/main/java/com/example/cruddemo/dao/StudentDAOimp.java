@@ -35,4 +35,31 @@ public class StudentDAOimp implements StudentDAO {
         //return    query results
         return query.getResultList();
     }
+
+    @Override
+    public List<Student> findByLastName(String lastName) {
+        TypedQuery<Student> query = em.createQuery("FROM Student where LastName=:thedata", Student.class);
+        query.setParameter("thedata", lastName);
+        return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void Update(Student student) {
+        em.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+       Student student = em.find(Student.class, id);
+       em.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public void ALLdelete() {
+        int count = em.createQuery("DELETE FROM Student").executeUpdate();
+        System.out.println("number of student deleted: " + count );
+    }
 }
