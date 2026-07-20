@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title> Student Registration Form </title>
@@ -17,6 +17,39 @@
     Last name:
     <input type="text" th:field="*{lastName}"/>
     <br><br>
+    Country:
+    <select th:field="*{country}">
+<!--        <option th:value="Brazil">Brazil</option>-->
+<!--        <option th:value="France">France</option>-->
+<!--        <option th:value="India">India</option>-->
+        <option th:each="tempCountry : ${countries}"
+                th:value="${tempCountry}"
+                th:text="${tempCountry}">
+        </option>
+
+    </select>
+    <br><br>
+        Favorite System:
+
+<!--        <input type="checkbox" th:field="*{favSystem}" value="Linux"/> Linux-->
+<!--        <input type="checkbox" th:field="*{favSystem}" value="Windows"/> Windows-->
+<!--        <input type="checkbox" th:field="*{favSystem}" value="IOS"/> IOS-->
+    <input type="checkbox" th:field="*{favSystem}"
+           th:each="tempSys:${Systems}"
+           th:value="${tempSys}"
+           th:text="${tempSys}"/>
+    <br><br>
+    Favorite Programming Language:
+<!--    <input type="radio" th:field="*{favLanguage}" th:value="Go">GO</input>-->
+<!--    <input type="radio" th:field="*{favLanguage}" th:value="Jave">Java</input>-->
+<!--    <input type="radio" th:field="*{favLanguage}" th:value="C">C</input>-->
+<input type="radio" th:field="*{favLanguage}"
+th:each="tempLang:${PLanguage}"
+th:value="${tempLang}"
+th:text="${tempLang}"/>
+<br><br>
+
+
 
     <input type="submit" value="Submit"/>
 
